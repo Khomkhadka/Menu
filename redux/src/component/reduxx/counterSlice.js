@@ -5,6 +5,7 @@ const counterSlice = createSlice({
       value: 0,
       loanData:false,
       isActive:false,
+      paidLoan:0,
       
     },
     reducers: {
@@ -18,7 +19,7 @@ const counterSlice = createSlice({
 
       },
       withdraw: state =>{
-        if(state.value<=-500) return
+        if(state.value==0) return
         state.value -= 50
       },
       loan: state =>{
@@ -26,10 +27,21 @@ const counterSlice = createSlice({
         state.loanData = true;
       },
       pay:state=>{
-        if(state.loanData=true){
-          state.value -= 5000
-          state.loanData=false
+        if(state.loanData==true && state.value>0){
+          state.value -= (10/100)*5000
+          state.paidLoan +=(10/100)*5000
+          if(state.paidLoan==5000){
+            state.loanData = false
+            state.paidLoan= 0
+          }
+          else{
+            state.loanData=true
+          }
         }
+        if(state.value<=0){
+          alert('canoot pay')
+        }
+       
       },
       close: state =>{
         state.isActive=false;

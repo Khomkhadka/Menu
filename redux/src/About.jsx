@@ -5,8 +5,8 @@ const About = ()=>{
     
     return(<>
 
- <h1>this is About</h1>
- <h3>The total click on Home/product is {count}</h3>
+ <h1>This is About</h1>
+ <h3>Your total amount in bank is $ {count}</h3>
  </>
     )
 }
